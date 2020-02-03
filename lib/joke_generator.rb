@@ -36,6 +36,8 @@ module JokeGenerator
     puts send(joke_method)
   end
 
+  private
+
   def self.pick_joke_service
     joke_types = %w(dad trump norris jokeapi)
     joke_types.sample
