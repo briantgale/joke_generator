@@ -1,4 +1,5 @@
 require "joke_generator/version"
+require "joke_generator/joke_service"
 require "joke_generator/dad_joke"
 require "joke_generator/trump_joke"
 require "joke_generator/norris_joke"

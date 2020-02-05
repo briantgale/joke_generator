@@ -1,9 +1,5 @@
-class JokeGenerator::NorrisJoke
-
-  def joke
-    response = RestClient.get("https://api.chucknorris.io/jokes/random")
-    JSON.parse(response.body)["value"]
-  end
-
+class JokeGenerator::NorrisJoke < JokeGenerator::JokeService
+  API_PATH = "https://api.chucknorris.io/jokes/random"
+  JSON_LOCATION = ["value"]
 end
 

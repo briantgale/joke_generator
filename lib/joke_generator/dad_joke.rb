@@ -1,8 +1,4 @@
-class JokeGenerator::DadJoke
-
-  def joke
-    response = RestClient.get("https://icanhazdadjoke.com/", {accept: :json})
-    JSON.parse(response.body)["joke"]
-  end
-
+class JokeGenerator::DadJoke < JokeGenerator::JokeService
+  API_PATH = "https://icanhazdadjoke.com/"
+  JSON_LOCATION = ["joke"]
 end

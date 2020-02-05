@@ -1,20 +1,15 @@
-class JokeGenerator::ProgrammerJoke
-
-  def joke
-    response = RestClient.get("https://sv443.net/jokeapi/category/Programming")
-    body = JSON.parse(response.body)
-    parse_joke(body)
-  end
+class JokeGenerator::ProgrammerJoke < JokeGenerator::JokeService
+  API_PATH = "https://sv443.net/jokeapi/category/Programming"
 
   private
 
-  def parse_joke(api_response)
+  def extract_joke(json)
     # This API returns 2 types of response, a general joke and a setup/punchline joke
-    case api_response["type"]
+    case json["type"]
     when "single"
-      api_response["joke"]
+      json["joke"]
     when "twopart"
-      api_response.slice("setup", "delivery").values.join(" ")
+      json.slice("setup", "delivery").values.join(" ")
     end
   end
 
