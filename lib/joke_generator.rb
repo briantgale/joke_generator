@@ -10,27 +10,44 @@ require 'pry'
 module JokeGenerator
   class Error < StandardError; end
 
-  def self.joke
-    puts "Pick your joke type:"
-    puts "1. Dad Joke"
-    puts "2. Trump Quote"
-    puts "3. Chuck Norris"
-    puts "4. Programmer Joke"
+  def self.joke(type:)
+    type = type.to_sym if type.is_a?(String)
 
+    raise "#{type} is not a valid joke type" unless JokeGenerator::JokeService::JOKE_TYPES.include?(type)
+
+    klass = [type,"joke"].map(&:capitalize).join
+    Object.const_get("JokeGenerator::#{klass}").new
+  end
+
+  def self.jokes(type:, count:)
+    raise "#{type} is not a valid joke type" unless JokeGenerator::JokeService::JOKE_TYPES.include?(type)
+    raise "count must be greater than 0" unless count > 0
+
+    Array.new(count).map { joke(type: type) }
+  end
+
+  def self.tell_a_joke
+    puts "Pick your joke type:"
+
+    JokeGenerator::JokeService::JOKE_TYPES.each_with_index do |joke_type, i|
+      puts "#{i + 1}. #{joke_type.capitalize} Joke"
+    end
+
+    print "Your choice: "
     response = gets.chomp
 
-    case response.to_i
-    when 1
-      puts JokeGenerator::DadJoke.new.joke
-    when 2
-      puts JokeGenerator::TrumpJoke.new.joke
-    when 3
-      puts JokeGenerator::NorrisJoke.new.joke
-    when 4
-      puts JokeGenerator::ProgrammerJoke.new.joke
-    else
-      random
+    print "How many jokes should I tell (1-10)? "
+    count = gets.chomp
+
+    count = count.to_i 
+    count = 1 if count < 1 || count > 10
+
+    joke_type = JokeGenerator::JokeService::JOKE_TYPES[response.to_i - 1]
+
+    puts "\n"
+    jokes(type: joke_type, count: count).each do |joke|
+      puts joke.joke
+      puts "\n"
     end
   end
-  
 end

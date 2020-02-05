@@ -4,4 +4,4 @@ require "bundler/setup"
 require "joke_generator"
 # require "irb"
 #
-JokeGenerator.joke
+JokeGenerator.tell_a_joke

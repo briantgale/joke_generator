@@ -1,4 +1,6 @@
 class JokeGenerator::JokeService
+  JOKE_TYPES = %i(dad trump norris programmer)
+
   attr_reader :joke
 
   def initialize
