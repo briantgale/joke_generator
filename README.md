@@ -1,8 +1,17 @@
-# JokeGenerator
+# Joke Generator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/joke_generator`. To experiment with that code, run `bin/console` for an interactive prompt.
+Joke Generator is a gem I built to demonstrate the process of building out object-oriented code with classes and inheritance. The companion tutorial notes are found in my [Tutorials Repo](https://github.com/briantgale/tutorials).
 
-TODO: Delete this and the text above, and describe your gem
+
+There are currently 5 branches, each representing a different state of development:
+
+```
+1 - Represents a simple script (tell_a_joke.rb) without any structure.
+2 - Builds out a gem, moves the script into a module, and builds out a few methods.
+3 - Creates some classes, but does not use inheritance to share methods.
+4 - Adds a parent class for the jokes, demonstrates inheritance and overriding of methods.
+5/master - Adds some interface methods to the main module.
+```
 
 ## Installation
 
@@ -22,13 +31,12 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+CLI Utilities
 
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```
+./bin/console
+./bin/joke
+```
 
 ## Contributing
 
